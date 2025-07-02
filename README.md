@@ -46,9 +46,6 @@ portfolio/
 Clone o projeto e instale as dependências:
 
 ```
-bash
-Copiar
-Editar
 git clone https://github.com/guilhermesenci/new_portfolio
 cd portfolio
 npm install
@@ -56,11 +53,17 @@ npm install
 
 ## 🧪 Lint + Formatação
 
-bash
-Copiar
-Editar
-npm run lint # Analisar o código com ESLint
-npm run format # Formatar com Prettier (se configurado)
+```
+npm run lint
+```
+
+Analisar o código com ESLint
+
+```
+npm run format
+```
+
+Formatar com Prettier (se configurado)
 
 ## 🚀 Rodar Localmente
 
@@ -78,6 +81,6 @@ npm run dev
 
 ✅ - Responsividade mobile
 
-Seções: Sobre, Projetos, Contato
+Seções: Página inicial, Sobre, Projetos, História, Contato
 
 Deploy (Vercel ou GitHub Pages)
