@@ -1,69 +1,80 @@
-# React + TypeScript + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto de **portfólio pessoal** desenvolvido com **React** e **Material UI**, com foco em uma interface limpa, moderna e responsiva. Ele apresenta temas customizados (claro e escuro), gerenciamento centralizado de estilos e potencial para expansão com novas seções.
 
-Currently, two official plugins are available:
+## ✨ Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Material UI (MUI)](https://mui.com/)
+- [Vite](https://vitejs.dev/) _(opcional, dependendo da sua stack)_
+- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
+- [React Router](https://reactrouter.com/) _(se houver navegação)_
 
-## Expanding the ESLint configuration
+## 🌗 Tema Personalizado
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+O sistema de temas foi customizado com base no Material UI, permitindo alternância entre os modos **claro** e **escuro**.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Exemplo de uso:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```tsx
+const theme = createAppTheme("light"); // ou 'dark'
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📁 Estrutura de Pastas
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+portfolio/
+├── public/
+│ ├── locales/ # Traduções reutilizáveis
+├── src/
+│ ├── assets/ # Componentes reutilizáveis
+│ ├── components/ # Componentes reutilizáveis
+│ ├── pages/ # Páginas principais do site
+│ ├── routes/ # Sistema de rotas do site
+│ ├── store/ # Gerenciador de estado global
+│ ├── theme/ # Arquivo createAppTheme.ts
+│ ├── utils/ # Funções utilitárias
+│ └── App.tsx
+├── .eslintrc.json
+├── tsconfig.json
+└── README.md
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📦 Instalação
+
+Clone o projeto e instale as dependências:
+
+bash
+Copiar
+Editar
+git clone https://github.com/seu-usuario/portfolio.git
+cd portfolio
+npm install
+
+## 🧪 Lint + Formatação
+
+bash
+Copiar
+Editar
+npm run lint # Analisar o código com ESLint
+npm run format # Formatar com Prettier (se configurado)
+
+## 🚀 Rodar Localmente
+
+bash
+Copiar
+Editar
+npm run dev
+
+## ✅ Todo
+
+✅ - Estrutura inicial com React + MUI
+
+✅ - Tema claro/escuro com customizações
+
+✅ - Traduções inglês/português
+
+✅ - Responsividade mobile
+
+Seções: Sobre, Projetos, Contato
+
+Deploy (Vercel ou GitHub Pages)

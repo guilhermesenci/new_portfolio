@@ -7,18 +7,53 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Diretórios comuns de build/output
+node_modules/
+dist/
+build/
+dist-ssr/
+.out/          # usado pelo Next.js em produção
+
+# Arquivos locais de ambiente
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos de configuração local
 *.local
 
-# Editor directories and files
-.vscode/*
+# Diretórios e arquivos de editores
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Arquivos de cache
+.cache/
+.npm/
+.yarn/
+.pnp.*
+turbo/
+.eslintcache
+.next/          # usado por Next.js
+
+# Arquivos de exportação do sistema
+Thumbs.db
+ehthumbs.db
+
+# coverage (testes)
+coverage/
+
+# Storybook
+out/
+storybook-static/
+
+# Arquivos temporários
+*.tmp
+*.temp

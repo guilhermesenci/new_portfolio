@@ -13,9 +13,9 @@ const DropDownMenu = ({ title, options }: MenuProps) => {
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
   const handleClick = useCallback(
     (opt: MenuItenstProps) => {
