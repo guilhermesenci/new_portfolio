@@ -45,12 +45,14 @@ portfolio/
 
 Clone o projeto e instale as dependências:
 
+```
 bash
 Copiar
 Editar
-git clone https://github.com/seu-usuario/portfolio.git
+git clone https://github.com/guilhermesenci/new_portfolio
 cd portfolio
 npm install
+```
 
 ## 🧪 Lint + Formatação
 
@@ -62,10 +64,9 @@ npm run format # Formatar com Prettier (se configurado)
 
 ## 🚀 Rodar Localmente
 
-bash
-Copiar
-Editar
+```
 npm run dev
+```
 
 ## ✅ Todo
 
