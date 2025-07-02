@@ -24,7 +24,7 @@ const useHeader = () => {
         onClick: () => changeLanguage("en"),
       },
     ],
-    [i18n.language]
+    [t, changeLanguage]
   );
 
   const pages = useMemo(
@@ -42,7 +42,7 @@ const useHeader = () => {
         onClick: () => {},
       },
     ],
-    [i18n.language]
+    [t]
   );
 
   const LanguageButton = useCallback(() => {
