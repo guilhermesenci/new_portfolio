@@ -1,0 +1,20 @@
+{
+  "components": {
+    "header": {
+      "name": "Guilherme Senci",
+      "options": {
+        "initialPage": "Página inicial",
+        "about": "Sobre",
+        "history": "História",
+        "pt-br": "Português",
+        "en": "Inglês"
+      }
+    }
+  },
+  "pages": {
+    "NotFound": {
+      "title": "Ops! A página que você procura não foi encontrada.",
+      "button": "Voltar para a página inicial"
+    }
+  }
+}
