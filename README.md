@@ -23,6 +23,7 @@ const theme = createAppTheme("light"); // ou 'dark'
 
 ## 📁 Estrutura de Pastas
 
+```
 portfolio/
 ├── public/
 │ ├── locales/ # Traduções reutilizáveis
@@ -38,6 +39,7 @@ portfolio/
 ├── .eslintrc.json
 ├── tsconfig.json
 └── README.md
+```
 
 ## 📦 Instalação
 
