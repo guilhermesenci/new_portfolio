@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, Suspense, lazy } from "react";
 
 import { useSelector } from "react-redux";
 
@@ -18,7 +18,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <AppRoutes />;
+      <AppRoutes />
     </ThemeProvider>
   );
 }
