@@ -2,8 +2,10 @@ import { useCallback, useMemo } from "react";
 
 import { useTranslation } from "react-i18next";
 import { Language } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const useHeader = () => {
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
   const changeLanguage = useCallback(
@@ -12,6 +14,10 @@ const useHeader = () => {
     },
     [i18n]
   );
+
+  const handlePageChange = useCallback((destiny: string) => {
+    navigate(destiny);
+  }, []);
 
   const languageOptions = useMemo(
     () => [
@@ -31,15 +37,33 @@ const useHeader = () => {
     () => [
       {
         label: t("components.header.options.initialPage"),
-        onClick: () => {},
+        onClick: () => {
+          handlePageChange("/");
+        },
       },
       {
         label: t("components.header.options.about"),
-        onClick: () => {},
+        onClick: () => {
+          handlePageChange("/about");
+        },
+      },
+      {
+        label: t("components.header.options.projects"),
+        onClick: () => {
+          handlePageChange("/projects");
+        },
       },
       {
         label: t("components.header.options.history"),
-        onClick: () => {},
+        onClick: () => {
+          handlePageChange("/history");
+        },
+      },
+      {
+        label: t("components.header.options.contact"),
+        onClick: () => {
+          handlePageChange("/contact");
+        },
       },
     ],
     [t]

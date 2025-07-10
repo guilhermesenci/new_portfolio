@@ -99,7 +99,7 @@ export const createAppTheme = (
       MuiAppBar: {
         styleOverrides: {
           root: {
-            backgroundColor: palette.hover,
+            backgroundColor: palette.background.default,
           },
         },
       },

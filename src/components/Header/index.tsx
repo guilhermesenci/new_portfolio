@@ -18,6 +18,8 @@ import IconButton from "@mui/material/IconButton";
 import useHeader from "./useHeader";
 import { Stack } from "@mui/material";
 
+const NAME = "Guilherme Senci";
+
 const Header = () => {
   const { languageOptions, pages, LanguageButton } = useHeader();
 
@@ -38,7 +40,7 @@ const Header = () => {
               letterSpacing: ".3rem",
             }}
           >
-            Guilherme Senci
+            {NAME}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -54,13 +56,15 @@ const Header = () => {
               letterSpacing: ".3rem",
             }}
           >
-            Guilherme Senci
+            {NAME}
           </Typography>
           <Box
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, gap: 2 }}
           >
             {pages.map((page) => (
-              <Button key={page.label}>{page.label}</Button>
+              <Button key={page.label} onClick={() => page.onClick()}>
+                {page.label}
+              </Button>
             ))}
           </Box>
           <Stack display={"flex"} direction={"row"} gap={2}>

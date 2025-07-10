@@ -1,14 +1,24 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "@/pages/Home";
-import NotFound from "@/pages/NotFound";
+import { Suspense, lazy } from "react";
+
+const Home = lazy(() => import("@/pages/Home"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
+const About = lazy(() => import("@/pages/About"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const History = lazy(() => import("@/pages/History"));
+const Projects = lazy(() => import("@/pages/Projects"));
 
 export default function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-
-      {/* Lidando com rotas não mapeadas */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <Suspense fallback={<div>Carregando página...</div>}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
