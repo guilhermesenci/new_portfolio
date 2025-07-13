@@ -11,12 +11,30 @@
         "pt-br": "Portuguese",
         "en": "English"
       }
+    },
+    "card": {
+      "noDescription": "No description available.",
+      "notEspecified": "Not specified.",
+      "noImage": "No image available.",
+      "language": "Language",
+      "dateFormat": "Last commit: "
     }
   },
   "pages": {
     "NotFound": {
       "title": "Oops! This page couldn't be found.",
       "button": "Back to initial page"
+    },
+    "projects": {
+      "buttons": {
+        "github": "View on GitHub",
+        "profile": "View profile"
+      }
     }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred while fetching the data.",
+    "noData": "No data available."
   }
 }

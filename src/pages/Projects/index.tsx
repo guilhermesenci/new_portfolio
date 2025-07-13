@@ -1,36 +1,62 @@
-import Title from "@/components/Title";
+import { Box } from "@mui/material";
+import Card from "@/components/Card";
+import Pagination from "@/components/Pagination";
 
-import { useGithubUserName } from "@/hooks/useGithubUserName";
-import {
-  useGetProfileQuery,
-  useGetReposQuery,
-} from "@/features/github/githubAPI";
-import { Stack } from "@mui/material";
+import useProjects from "./useProjects";
 
 const Projects = () => {
-  const username = useGithubUserName();
-
-  const { data: profile, isLoading: loadingProfile } = useGetProfileQuery(
+  const {
+    repos,
+    buttons,
     username,
-    {
-      skip: !username,
-    }
-  );
-
-  const { data: repos, isLoading: loadingRepos } = useGetReposQuery(username, {
-    skip: !username,
-  });
+    loadingProfile,
+    loadingRepos,
+    handlePageChange,
+    page,
+    totalPages,
+  } = useProjects();
 
   if (!username) return <div>Carregando username...</div>;
+
   if (loadingProfile || loadingRepos)
     return <div>Carregando dados do GitHub...</div>;
+
   return (
-    <Stack>
-      <Title label={profile?.name ?? "Erro"} />
-      {repos?.map((repo) => (
-        <Title key={repo.id} label={repo?.name ?? "Erro"} />
-      ))}
-    </Stack>
+    <Box sx={{ height: "calc(100vh - 160px)"}}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          overflowX: "auto",
+          paddingX: 2,
+        }}
+      >
+        {repos?.map((repo) => (
+          <Card key={repo.id} buttons={buttons} {...repo} />
+        ))}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 4,
+          position: "sticky",
+          bottom: 0,
+          paddingY: 2,
+          backgroundColor: (theme) => theme.palette.background.paper,
+        }}
+      >
+        <Pagination
+          page={page}
+          count={totalPages}
+          onChange={(_, value) => handlePageChange(value)}
+        />
+      </Box>
+    </Box>
   );
 };
 
