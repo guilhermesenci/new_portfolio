@@ -11,12 +11,30 @@
         "pt-br": "Português",
         "en": "Inglês"
       }
+    },
+    "card": {
+      "noDescription": "Nenhuma descrição disponível.",
+      "notEspecified": "Não especificado.",
+      "noImage": "Nenhuma imagem disponível.",
+      "language": "Linguagem",
+      "dateFormat": "Último commit: "
     }
   },
   "pages": {
     "NotFound": {
       "title": "Ops! A página que você procura não foi encontrada.",
       "button": "Voltar para a página inicial"
+    },
+    "projects": {
+      "buttons": {
+        "github": "Ver no GitHub",
+        "profile": "Ver perfil"
+      }
     }
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro ao buscar os dados.",
+    "noData": "Nenhum dado disponível."
   }
 }
