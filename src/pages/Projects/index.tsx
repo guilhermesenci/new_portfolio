@@ -1,6 +1,14 @@
-import { Box } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+
 import Card from "@/components/Card";
 import Pagination from "@/components/Pagination";
+import ProjectPreview from "@/components/ProjectPreview";
 
 import useProjects from "./useProjects";
 
@@ -14,6 +22,10 @@ const Projects = () => {
     handlePageChange,
     page,
     totalPages,
+    selectedRepo,
+    closePreview,
+    previewCode,
+    repoContents,
   } = useProjects();
 
   if (!username) return <div>Carregando username...</div>;
@@ -22,21 +34,39 @@ const Projects = () => {
     return <div>Carregando dados do GitHub...</div>;
 
   return (
-    <Box sx={{ height: "calc(100vh - 160px)"}}>
+    <Box sx={{ height: "calc(100vh - 160px)" }}>
       <Box
         sx={{
-          display: "flex",
           gap: 2,
+          padding: 2,
           height: "100%",
-          justifyContent: "center",
+          display: "flex",
+          flexDirection: "column",
           alignItems: "center",
-          overflowX: "auto",
-          paddingX: 2,
+          justifyContent: "center",
+          transition: "all 0.3s ease",
         }}
       >
-        {repos?.map((repo) => (
-          <Card key={repo.id} buttons={buttons} {...repo} />
-        ))}
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+          {repos?.map((repo) => (
+            <Card
+              key={repo.id}
+              buttons={buttons}
+              {...repo}
+              resume={previewCode}
+            />
+          ))}
+        </Box>
+
+        {selectedRepo ? (
+          <Box sx={{ marginTop: 2 }}>
+            <ProjectPreview
+              repo={selectedRepo}
+              onClose={closePreview}
+              files={repoContents}
+            />
+          </Box>
+        ) : null}
       </Box>
       <Box
         sx={{

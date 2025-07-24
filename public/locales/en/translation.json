@@ -28,7 +28,8 @@
     "projects": {
       "buttons": {
         "github": "View on GitHub",
-        "profile": "View profile"
+        "profile": "View profile",
+        "preview": "Preview code"
       }
     }
   },
@@ -36,5 +37,21 @@
     "loading": "Loading...",
     "error": "An error occurred while fetching the data.",
     "noData": "No data available."
+  },
+  "projectView": {
+    "language": "Language",
+    "lastUpdate": "Last update: ",
+    "loading": "Loading project...",
+    "error": "Error loading the project.",
+    "noProject": "No project selected.",
+    "noFiles": "No files found.",
+    "description": "Project description: "
+  },
+  "repoExplorer": {
+    "loading": "Loading files...",
+    "error": "Error loading files.",
+    "noFiles": "No files found.",
+    "fileContent": "File content",
+    "fileNotFound": "File not found."
   }
 }

@@ -22,6 +22,12 @@ type Owner = {
   user_view_type: string;
 };
 
+type PayloadProjects = {
+  username: string;
+  repo: string;
+  path?: string;
+};
+
 export type Repository = {
   allow_forking: boolean;
   archived: string;
@@ -104,6 +110,17 @@ export type Repository = {
   web_commit_signoff_required: boolean;
 };
 
+export type RepositoryFile = {
+  name: string;
+  path: string;
+  sha: string;
+  size: number;
+  url: string;
+  html_url: string;
+  git_url: string;
+  download_url: string;
+  type: "file" | "dir";
+};
 interface GetReposArgs {
   username: string;
   page?: number;
@@ -116,11 +133,17 @@ export const githubApi = createApi({
   reducerPath: "githubApi",
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_GITHUB ?? "https://api.github.com/",
+    prepareHeaders: (headers) => {
+      headers.set("Authorization", `Bearer ${import.meta.env.VITE_GITHUB_KEY}`);
+      return headers;
+    },
   }),
+
   endpoints: (builder) => ({
     getProfile: builder.query<any, string>({
       query: (username) => `users/${username}`,
     }),
+
     getRepos: builder.query<Repository[], GetReposArgs>({
       query: ({
         username,
@@ -131,7 +154,43 @@ export const githubApi = createApi({
       }) =>
         `users/${username}/repos?page=${page}&per_page=${per_page}&sort=${sort}&direction=${direction}`,
     }),
+
+    getRepoContents: builder.query<RepositoryFile[], PayloadProjects>({
+      query: ({ username, repo, path = "" }) =>
+        `repos/${username}/${repo}/contents/${path}`,
+    }),
+
+    getFileContent: builder.query<string, { url: string }>({
+      queryFn: async ({ url }, _api, _extraOptions, baseQuery) => {
+        const result = await baseQuery({ url });
+        if (
+          "data" in result &&
+          result.data &&
+          typeof result.data === "object" &&
+          "content" in result.data &&
+          (result.data as any).encoding === "base64"
+        ) {
+          const decoded = atob((result.data as any).content);
+          return { data: decoded };
+        }
+
+        return {
+          error: result.error ?? {
+            status: 500,
+            statusText: "Erro ao acessar conteúdo",
+            data: "Arquivo não possui conteúdo base64 válido",
+          },
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetProfileQuery, useGetReposQuery } = githubApi;
+export const {
+  useGetProfileQuery,
+  useGetReposQuery,
+  useGetRepoContentsQuery,
+  useGetFileContentQuery,
+  useLazyGetFileContentQuery,
+  useLazyGetRepoContentsQuery,
+} = githubApi;

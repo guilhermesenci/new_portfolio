@@ -11,7 +11,7 @@ interface GithubState {
 const initialState: GithubState = {
   currentUsername: "guilhermesenci",
   page: 1,
-  perPage: 5,
+  perPage: 3,
   sort: "updated",
   direction: "desc",
 };

@@ -1,7 +1,9 @@
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useGithubUserName } from "@/hooks/useGithubUserName";
 import {
+  Repository,
   useGetProfileQuery,
+  useGetRepoContentsQuery,
   useGetReposQuery,
 } from "@/features/github/githubAPI";
 import { useSelector } from "react-redux";
@@ -11,6 +13,9 @@ import { setPage } from "@/store/githubSlice";
 import { useTranslation } from "react-i18next";
 
 const useProjects = () => {
+  const [selectedRepo, setSelectedRepo] = useState<Repository | null>(null);
+  const [previewCode, setPreviewCode] = useState<boolean>(false);
+
   const dispatch = useDispatch();
   const username = useGithubUserName();
 
@@ -34,9 +39,38 @@ const useProjects = () => {
     }
   );
 
-  const handlePageChange = (value: number) => {
-    dispatch(setPage(value));
-  };
+  const { data: repoContents } =
+    useGetRepoContentsQuery(
+      { username, repo: selectedRepo?.name ?? "", path: "" },
+      {
+        skip: !selectedRepo,
+        refetchOnMountOrArgChange: true,
+      }
+    );
+
+  const handlePageChange = useCallback(
+    (value: number) => {
+      dispatch(setPage(value));
+    },
+    [dispatch]
+  );
+
+  const openPreview = useCallback((repo: Repository) => {
+    setPreviewCode(true);
+    handlePreviewCode(repo);
+  }, []);
+
+  const handlePreviewCode = useCallback(
+    async (projectId: Repository) => {
+      setSelectedRepo(projectId);
+    },
+    [setSelectedRepo]
+  );
+
+  const closePreview = useCallback(() => {
+    setSelectedRepo(null);
+    setPreviewCode(false);
+  }, []);
 
   const buttons = useMemo(
     () => [
@@ -52,6 +86,10 @@ const useProjects = () => {
           window.open(profile?.html_url, "_blank");
         },
       },
+      {
+        text: t("pages.projects.buttons.preview"),
+        function: (repo: Repository) => openPreview(repo),
+      },
     ],
     [profile, t]
   );
@@ -66,8 +104,12 @@ const useProjects = () => {
     loadingRepos,
     username,
     handlePageChange,
+    closePreview,
     page,
     totalPages,
+    selectedRepo,
+    previewCode,
+    repoContents,
   };
 };
 export default useProjects;
