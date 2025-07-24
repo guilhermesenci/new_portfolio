@@ -11,7 +11,7 @@ export const useGithubData = (username: string) => {
     data: repos,
     error: reposError,
     isLoading: reposLoading,
-  } = useGetReposQuery(username);
+  } = useGetReposQuery({ username });
 
   return {
     profile,
